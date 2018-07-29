@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+  height:100vh;
+  width:100%;
+  /* background-image: url("./images/sqirl2.jpg"); */
+  /* background-color: rgba(100,100,100,.5); */
+  /* background-blend-mode: multiply; */
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background: linear-gradient(to right, LightSteelBlue, SteelBlue);
+
+  display: grid;
+  grid-template: 15% 70% 15% / 22% 5% 22% 5% 22% 5% 19%;
+  /* align-items: center; */
+  /* padding: 0px 20px 0px 10px; */
+}
