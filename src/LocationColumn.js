@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import Input from './Input'
-import CategoryButtonGrid from './CategoryButtonGrid'
-
-
 
 class LocationColumn extends Component {
     render() {
@@ -10,7 +7,7 @@ class LocationColumn extends Component {
       return (
         <div className="locationColumn">
 
-          <Input placeholder=" City, State, Zip, etc" />
+          <Input placeholder=" City, State, Zip, etc" event={this.props.handleLocationChange}/>
         </div>
       )
     }

@@ -5,6 +5,10 @@ body {
   height:100%
 }
 
+.columnHeader {
+
+}
+
 .input {
   width: 90%;
   height: 35px;
@@ -16,9 +20,22 @@ body {
 .categoryButton {
   width: 80px;
   height:80px;
-  border: 1px solid grey;
+  border-radius: 50%;
+  box-shadow: 2px 2px grey;
+  /* border: 1px solid grey; */
 
   /* vertical-align: middle; */
+}
+
+.categoryButton:hover {
+  opacity: .70;
+
+  perspective: (1px);
+  transform: translate(2px, 1px);
+  -webkit-transform: translate(2px, 1px);
+  /* transform: scale(1.1); */
+
+  /* background-color: #4CAF50; /* Green */
 }
 
 .priceButton {
@@ -40,6 +57,7 @@ body {
 
   margin: auto;
   display: grid;
+  background-color: inherit;
   grid-template: 80px 80px / repeat(3, 80px);
   grid-gap: 15px 15px;
 }

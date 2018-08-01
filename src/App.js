@@ -24,14 +24,14 @@ class App extends Component {
         category: "",
         lat: 0,
         lon: 0,
-        price: 1,
+        price: 0,
 
       }
   }
 
   handleSubmit = () => {
     let headers = {
-      'Authorization': 'Bearer' + this.API_KEY
+      'Content-Type': 'application/json'
     }
     let params = {}
 
@@ -39,15 +39,31 @@ class App extends Component {
       params['latitude'] = this.state.lat;
       params['longitude'] = this.state.lon;
     } else {
-      params['location'] = this.state.location;
+      if (this.state.location) {
+        params['location'] = this.state.location;
+      }
+      else {
+        alert("Please enter a location");
+      }
     }
 
-    axios.get(
-      this.YELP_URL, {
+    if (this.state.price) {
+      params['price'] = this.state.price;
+    }
+
+    params['term'] = this.state.term;
+    // outerParams['params'] = innerParams;
+    axios.get("/search", {
         params: params
       },
       headers
     )
+    .then(data => {
+      console.log(data);
+    })
+    .catch(function() {
+      console.log("UHOH");
+    })
   }
 
   handleTextChange = (event) => {
@@ -58,18 +74,26 @@ class App extends Component {
     this.setState({price: val});
   }
 
+  handleLocationChange = (event) => {
+    this.setState({location: event.target.value});
+    console.log(this.state.location);
+  }
+
+  handleCategoryPress = (category) => {
+    
+  }
+
   render() {
-    let image = this.state.current_image;
     return (
       <div className="App">
           <div id="logo"><h1>IDKYouPick</h1></div>
           <CategoryColumn handleTextChange={this.handleTextChange.bind(this)}/>
           <Divider col={2} />
-          <LocationColumn />
+          <LocationColumn handleLocationChange={this.handleLocationChange.bind(this)}/>
           <Divider col={4} />
           <PriceGrid onClick={this.handlePriceChange.bind(this)}/>
           <Divider col={6} />
-          <Button />
+          <Button handleSubmit={this.handleSubmit.bind(this)}/>
       </div>
     );
   }
