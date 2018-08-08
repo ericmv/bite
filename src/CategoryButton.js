@@ -9,7 +9,7 @@ class CategoryButton extends Component {
       this.props.update(event);
     }
     render() {
-
+      // console.log(this.props.image);
       return (
         <input type="button" onClick={this.props.onClick} className="categoryButton" style={
           {
@@ -18,7 +18,7 @@ class CategoryButton extends Component {
             color: 'transparent',
             gridArea: this.props.row /this.props.col / this.props.row+1 / this.props.col+1
           }
-        } value="123">
+        } value={this.props.val}>
         </input>
       )
     }
