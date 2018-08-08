@@ -68,6 +68,7 @@ class App extends Component {
 
   handleTextChange = (event) => {
     this.setState({term: event.target.value});
+    console.log(this.state.term);
   }
 
   handlePriceChange = (val) => {
@@ -80,7 +81,7 @@ class App extends Component {
   }
 
   handleCategoryPress = (category) => {
-    
+
   }
 
   render() {

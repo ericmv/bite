@@ -3,12 +3,19 @@ import React, { Component } from 'react';
 
 class Input extends Component {
 
+
+
+    onChange = (event) => {
+      this.props.event(event);
+      this.props.updateParent(event);
+    }
+
     render() {
-      const val = this.props.term;
+
       return (
 
         <div>
-          <input className="input" type="text" ref="category" placeholder={this.props.placeholder} onChange={this.props.event} value={val}/>
+          <input className="input" type="text" ref="category" placeholder={this.props.placeholder} onChange={this.onChange} value={this.props.val}/>
         </div>
       )
     }

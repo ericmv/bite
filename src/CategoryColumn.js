@@ -11,20 +11,28 @@ class CategoryColumn extends Component {
         term:""
       }
     }
-    handleButtonPress = (category) => {
-      this.setState({term:category});
 
+    handleButtonPress = (event) => {
+      // console.log(event.target.value);
+      this.setState({term:event.target.value});
+      this.props.handleTextChange(event);
+      // console.log(this.state.term);
     }
+
+    handleTextChange = (event) => {
+      this.setState({term:event.target.value});
+    }
+
     render() {
 
       return (
 
         <div className = "categoryColumn">
-          <CategoryButtonGrid onClick={this.handleButtonPress.bind(this)}/>
+          <CategoryButtonGrid update={this.props.handleTextChange} onClick={this.handleButtonPress.bind(this)}/>
           <br />
           <h3 style = { {textAlign: "center"}}>or</h3>
           <br />
-          <Input placeholder=" Category" event={this.props.handleTextChange} val={this.state.term}/>
+          <Input placeholder=" Category" event={this.props.handleTextChange} updateParent={this.handleTextChange.bind(this)} val={this.state.term}/>
         </div>
       )
     }

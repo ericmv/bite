@@ -1,9 +1,10 @@
 {
-  "name": "food-picker",
+  "name": "food-picker-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "express": "^4.16.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4"
@@ -18,5 +19,6 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-react": "^6.24.1"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
