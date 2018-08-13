@@ -7,7 +7,7 @@ class Input extends Component {
 
     onChange = (event) => {
       this.props.event(event);
-      this.props.updateParent(event);
+      // this.props.updateParent(event);
     }
 
     render() {

@@ -18,10 +18,10 @@ class PriceButton extends Component {
       gridArea: "1 / " + (this.props.col + 1) + " / 2 / " + (this.props.col+2)
     };
     if (this.props.isActive) {
-      divStyle['opacity'] = '.60';
+      divStyle['background-color'] = '#1ae09d';
     }
     else {
-      divStyle['opacity'] = '1';
+      divStyle['background-color'] = 'white';
     }
     return (
       <button type="button" className="priceButton" style={divStyle} val={this.props.val} onClick={this.handleClick}>

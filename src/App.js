@@ -6,19 +6,18 @@ import Divider from './Divider'
 import PriceGrid from './PriceGrid'
 import Button from './Button'
 import Results from './Results'
+import SelectedCategories from './SelectedCategories'
 import './App.css';
 
 class App extends Component {
-  API_KEY = "9OWN7mLDbiSvGqpS8uwgd-XBK3DLJJhjn2uMUP4FIt1vmAk6vy8xKoA7VqEbjy0kKd8Qqj52z3eo3mgiqN9ykUfkW2sveDyLHw6qPNNts0Zhu3AGUSR_C9L7AplbW3Yx"
-  CLIENT_ID = "MlSQCh9BD3pvWCC-KEXENw"
-  YELP_URL = 'https://api.yelp.com/v3/businesses/search' + this.API_KEY
 
   constructor () {
     super();
     this.state =
       {
         location: "Costa Mesa",
-        term: "",
+        current_input: "",
+        terms: [],
         category: "",
         lat: 0,
         lon: 0,
@@ -28,8 +27,18 @@ class App extends Component {
           {name: '$$$', val: '3', isActive: false},
           {name: '$$$$', val: '4', isActive: false}
         ],
-        showResults: true
-
+        showResults: false,
+        results: {
+          name: "McDonalds",
+          location: ["123"],
+          price: "$",
+          url: "345",
+          image_url: "",
+          categories: "",
+          rating: "4",
+          review_count: "456",
+          phone: "7142222222"
+        }
       }
   }
 
@@ -77,11 +86,28 @@ class App extends Component {
       headers
     )
     .then(res => {
-      const businesses = res.data.businesses;
-      const filtered = businesses.map((business) => {
-        return [business.name, ];
-      })
-      console.log(JSON.stringify(businesses, null, 2));
+      const rand = Math.floor(Math.random() * 25);
+      const business = res.data.businesses[rand];
+      let categories = "";
+      const business_categories = business.categories;
+      for (let i = 0; i < business_categories.length; i++) {
+        categories += business_categories[i].title
+        categories += ", "
+      }
+      categories = categories.substring(0, categories.length - 2);
+      const filtered = {name:business.name,
+        location: business.location.display_address,
+        rating: business.rating,
+        url: business.url,
+        price: business.price,
+        review_count: business.review_count,
+        categories: categories,
+        phone: business.display_phone,
+        image_url: business.image_url
+      }
+      this.setState({results: filtered, showResults: true});
+
+      console.log(filtered);
     })
     .catch(function() {
       console.log("UHOH");
@@ -89,8 +115,17 @@ class App extends Component {
   }
 
   handleTextChange = (event) => {
-    this.setState({term: event.target.value});
-    console.log(this.state.term);
+    this.setState({current_input: event.target.value});
+    console.log(this.state.current_input);
+  }
+
+  handleAddButton = () => {
+    let terms = this.state.terms.slice();
+    const val = this.state.current_input;
+    if (!terms.includes(val)) {
+      terms.push(val);
+      this.setState({terms: terms});
+    }
   }
 
   handlePriceChange = (i) => {
@@ -104,23 +139,39 @@ class App extends Component {
     console.log(this.state.location);
   }
 
-  handleCategoryPress = (category) => {
-
+  handleCategoryPress = (event) => {
+    let terms = this.state.terms.slice();
+    const val = event.target.value;
+    if (!terms.includes(val)) {
+      terms.push(val);
+      this.setState({terms: terms});
+    }
+  }
+  handleRemove = (event) => {
+    let terms = this.state.terms.slice();
+    const index = terms.findIndex(x => x === event.target.value);
+    terms.splice(index, 1);
+    this.setState({terms: terms});
+  }
+  handleModalClose = () => {
+    const newResults = !this.state.showResults;
+    this.setState({showResults: newResults});
   }
 
   render() {
     return (
 
       <div className="App">
-          <div id="logo"><h1>IDKYouPick</h1></div>
-          <CategoryColumn handleTextChange={this.handleTextChange.bind(this)}/>
+          <div id="logo"><h1>Nibble</h1></div>
+          <CategoryColumn handleAddButton={this.handleAddButton.bind(this)} handleCategoryPress={this.handleCategoryPress.bind(this)} handleTextChange={this.handleTextChange.bind(this)} current_input={this.state.current_input}/>
           <Divider col={2} />
           <LocationColumn handleLocationChange={this.handleLocationChange.bind(this)}/>
           <Divider col={4} />
           <PriceGrid price={this.state.price} onClick={this.handlePriceChange.bind(this)}/>
           <Divider col={6} />
           <Button handleSubmit={this.handleSubmit.bind(this)}/>
-          <Results display={this.state.showResults}/>
+          <Results display={this.state.showResults} handleClose={this.handleModalClose.bind(this)} results={this.state.results}/>
+          <SelectedCategories onClick={this.handleRemove.bind(this)} categories={this.state.terms}/>
       </div>
 
 

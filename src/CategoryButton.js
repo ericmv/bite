@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 
 class CategoryButton extends Component {
 
-    handleButtonPress = (event) => {
-      this.props.onClick(event);
-      this.props.update(event);
-    }
+    // handleButtonPress = (event) => {
+    //   this.props.onClick(event);
+    //   this.props.update(event);
+    // }
     render() {
       // console.log(this.props.image);
       return (
