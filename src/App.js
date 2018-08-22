@@ -37,7 +37,8 @@ class App extends Component {
           categories: "",
           rating: "4",
           review_count: "456",
-          phone: "7142222222"
+          phone: "7142222222",
+          latlon: ""
         }
       }
   }
@@ -77,8 +78,10 @@ class App extends Component {
     if (price) {
       params['price'] = price;
     }
+    const index = Math.floor(Math.random() * this.state.terms.length);
+    const term = this.state.terms[index];
 
-    params['term'] = this.state.term;
+    params['term'] = term;
     // outerParams['params'] = innerParams;
     axios.get("/search", {
         params: params
@@ -95,19 +98,31 @@ class App extends Component {
         categories += ", "
       }
       categories = categories.substring(0, categories.length - 2);
-      const filtered = {name:business.name,
-        location: business.location.display_address,
-        rating: business.rating,
-        url: business.url,
-        price: business.price,
-        review_count: business.review_count,
-        categories: categories,
-        phone: business.display_phone,
-        image_url: business.image_url
-      }
-      this.setState({results: filtered, showResults: true});
 
-      console.log(filtered);
+      let location = ""
+      const location_array = business.location.display_address;
+      for (let i = 0; i < location_array.length; i++) {
+        location += location_array[i] + " ";
+      }
+      axios.get("/map", {params: {'location': location}})
+      .then(res => {
+        const ll = res.data.results[0].geometry.location;
+        const filtered = {name:business.name,
+          location: business.location.display_address,
+          rating: business.rating,
+          url: business.url,
+          price: business.price,
+          review_count: business.review_count,
+          categories: categories,
+          phone: business.display_phone,
+          image_url: business.image_url,
+          latlon: ll
+        }
+        this.setState({results: filtered, showResults: true});
+      })
+      .catch(function() {
+        console.log("OHNO");
+      })
     })
     .catch(function() {
       console.log("UHOH");
@@ -124,7 +139,7 @@ class App extends Component {
     const val = this.state.current_input;
     if (!terms.includes(val)) {
       terms.push(val);
-      this.setState({terms: terms});
+      this.setState({terms: terms, current_input: ""});
     }
   }
 
@@ -165,7 +180,7 @@ class App extends Component {
           <div id="logo"><h1>Nibble</h1></div>
           <CategoryColumn handleAddButton={this.handleAddButton.bind(this)} handleCategoryPress={this.handleCategoryPress.bind(this)} handleTextChange={this.handleTextChange.bind(this)} current_input={this.state.current_input}/>
           <Divider col={2} />
-          <LocationColumn handleLocationChange={this.handleLocationChange.bind(this)}/>
+          <LocationColumn location={this.state.location} handleLocationChange={this.handleLocationChange.bind(this)}/>
           <Divider col={4} />
           <PriceGrid price={this.state.price} onClick={this.handlePriceChange.bind(this)}/>
           <Divider col={6} />

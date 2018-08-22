@@ -12,7 +12,8 @@ body {
   border-radius: 3px;
   border:none;
   padding: 0px 0px 0px 7px;
-  margin-bottom: 10px;
+  position: relative;
+  /* margin-bottom: 10px; */
 }
 
 .categoryButton {
@@ -131,7 +132,7 @@ body {
 }
 .modal-content {
     display: grid;
-    grid-template-columns: 25% 40% 32% 3%;
+    grid-template-columns: 25% 35% 38% 2%;
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     text-align: left;
@@ -195,6 +196,8 @@ ul#selected li {
   margin-right: 20px;
   outline: none;
   text-align: left;
+  margin-top: 10px;
+  box-shadow: 1px 1px grey;
 
 }
 .selectedButton:hover {
@@ -205,4 +208,25 @@ ul#selected li {
   font-weight: bold;
   font-size: 16px;
   margin-right: 10px;
+}
+
+.map {
+  text-align: center;
+}
+
+.suggestion {
+  background-color: white;
+  width:90%;
+  /* border-radius: 3px; */
+  line-height: 35px;
+  height: 35px;
+  font-size: 16px;
+  position: relative;
+  margin: auto;
+  border: none;
+  padding-left: 7px;
+  padding-top: 2px;
+  text-align: left;
+  border-top: 1px solid grey;
+  z-index: 1;
 }
