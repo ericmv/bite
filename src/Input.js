@@ -23,12 +23,12 @@ class Input extends Component {
 
     handleKeyDown = (event) => {
       const keyCode = event.keyCode;
-      if (keyCode == 40) {
+      if (keyCode === 40) {
         let focus = this.state.focus;
         focus++;
         this.setState({focus: focus});
       }
-      else if (keyCode == 38) {
+      else if (keyCode === 38) {
         let focus = this.state.focus;
         focus--;
         this.setState({focus: focus});
@@ -37,7 +37,7 @@ class Input extends Component {
 
     render() {
       const suggestions = this.state.current_suggestions.map((suggestion) =>
-        <div class="suggestion">{suggestion}</div>
+        <div key={suggestion} className="suggestion">{suggestion}</div>
       )
       return (
 

@@ -44,6 +44,7 @@ class App extends Component {
   }
 
   handleSubmit = () => {
+    console.log("sdjkfsdkljf")
     let headers = {
       'Content-Type': 'application/json'
     }
@@ -82,6 +83,7 @@ class App extends Component {
     const term = this.state.terms[index];
 
     params['term'] = term;
+
     // outerParams['params'] = innerParams;
     axios.get("/search", {
         params: params
@@ -89,6 +91,7 @@ class App extends Component {
       headers
     )
     .then(res => {
+      console.log(res)
       const rand = Math.floor(Math.random() * 25);
       const business = res.data.businesses[rand];
       let categories = "";
@@ -104,25 +107,37 @@ class App extends Component {
       for (let i = 0; i < location_array.length; i++) {
         location += location_array[i] + " ";
       }
-      axios.get("/map", {params: {'location': location}})
-      .then(res => {
-        const ll = res.data.results[0].geometry.location;
-        const filtered = {name:business.name,
-          location: business.location.display_address,
-          rating: business.rating,
-          url: business.url,
-          price: business.price,
-          review_count: business.review_count,
-          categories: categories,
-          phone: business.display_phone,
-          image_url: business.image_url,
-          latlon: ll
-        }
-        this.setState({results: filtered, showResults: true});
-      })
-      .catch(function() {
-        console.log("OHNO");
-      })
+      const filtered = {name:business.name,
+        location: business.location.display_address,
+        rating: business.rating,
+        url: business.url,
+        price: business.price,
+        review_count: business.review_count,
+        categories: categories,
+        phone: business.display_phone,
+        image_url: business.image_url,
+      }
+      this.setState({results: filtered, showResults: true});
+      // axios.get("/map", {params: {'location': location}})
+      // .then(res => {
+      //
+      //   const ll = res.data.results[0].geometry.location;
+      //   const filtered = {name:business.name,
+      //     location: business.location.display_address,
+      //     rating: business.rating,
+      //     url: business.url,
+      //     price: business.price,
+      //     review_count: business.review_count,
+      //     categories: categories,
+      //     phone: business.display_phone,
+      //     image_url: business.image_url,
+      //     latlon: ll
+      //   }
+      //   this.setState({results: filtered, showResults: true});
+      // })
+      // .catch(function() {
+      //   console.log("OHNO");
+      // })
     })
     .catch(function() {
       console.log("UHOH");

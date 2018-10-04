@@ -5,7 +5,7 @@ class PriceGrid extends Component {
   createButtons = () => {
     let buttons = [];
     for (let i = 0; i < 4; i++) {
-      buttons.push(<PriceButton col={i} val={i} text={this.props.price[i]['name']} isActive={this.props.price[i]['isActive']} onClick={this.props.onClick}/>);
+      buttons.push(<PriceButton key={i} col={i} val={i} text={this.props.price[i]['name']} isActive={this.props.price[i]['isActive']} onClick={this.props.onClick}/>);
 
     }
     return buttons;
