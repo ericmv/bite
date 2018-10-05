@@ -84,7 +84,6 @@ class App extends Component {
 
     params['term'] = term;
 
-    // outerParams['params'] = innerParams;
     axios.get("/search", {
         params: params
       },

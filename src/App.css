@@ -1,20 +1,4 @@
 .App {
-  /* text-align: center; */
   height:100%;
   width:100%;
-  /* background-image: url("./images/sqirl2.jpg"); */
-
-
-  /* -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background: linear-gradient(to right, LightSteelBlue, SteelBlue);
-  background-color: rgba(100,100,100,.2);
-  background-blend-mode: multiply; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* grid-template: 15% 70% 15% / 100%; */
-  /* align-items: center; */
-  /* padding: 0px 20px 0px 10px; */
 }

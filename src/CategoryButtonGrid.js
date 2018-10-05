@@ -25,7 +25,6 @@ class CategoryButtonGrid extends Component {
       let count = 0;
       for (let i = 1; i < 3; i++) {
         for (let j=1; j < 4; j++) {
-          // let path = './images/' + this.state.groups[this.state.current_group][count] + '.png';
           let path = this.state.groups[count]['image'];
           let val = this.state.groups[count]['val'];
           buttons.push(<CategoryButton key={val} update={this.props.update} onClick={this.props.onClick} row={i} col={j} image={path} val={val}  />);
