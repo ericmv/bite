@@ -1,10 +1,6 @@
-# Project Title
+# Nibble
 
 Nibble is a React app made for the indecisive bunch. It lets users pick some categories of food they are craving, a location and price point, and will decide where to eat for them.
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
@@ -16,11 +12,11 @@ Give examples
 
 ### Installing
 
-Clone the repo git clone https://github.com/ericmv/bite.git
+Clone the repo ```git clone https://github.com/ericmv/bite.git```
 
-Install Dependencies npm install
+Install Dependencies ```npm install```
 
-Start npm start
+Start ```npm start```
 
 ## Built With
 
