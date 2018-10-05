@@ -8,7 +8,7 @@ Node and NPM will be required to run the app on your device.
 
 ### Installing
 
-Clone the repo ```git clone https://github.com/ericmv/bite.git```
+Clone the repo ```git clone https://github.com/ericmv/nibble.git```
 
 Install Dependencies ```npm install```
 
