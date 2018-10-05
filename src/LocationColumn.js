@@ -5,7 +5,7 @@ class LocationColumn extends Component {
 
       return (
         <div className="locationColumn">
-          <Input placeholder="City, State, Zip, etc" updateParent={() => {}} event={this.props.handleLocationChange}/>
+          <Input size="200px" placeholder="City, State, Zip, etc" updateParent={() => {}} event={this.props.handleLocationChange}/>
         </div>
       )
     }
