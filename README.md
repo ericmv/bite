@@ -6,10 +6,6 @@ Nibble is a React app made for the indecisive bunch. It lets users pick some cat
 
 Node and NPM will be required to run the app on your device.
 
-```
-Give examples
-```
-
 ### Installing
 
 Clone the repo ```git clone https://github.com/ericmv/bite.git```
