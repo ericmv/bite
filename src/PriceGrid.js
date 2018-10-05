@@ -13,8 +13,11 @@ class PriceGrid extends Component {
 
   render() {
     return (
-      <div className="priceGrid">
+
+      <div className="priceColumn">
+        <div className="priceGrid">
         {this.createButtons()}
+        </div>
       </div>
     )
   }

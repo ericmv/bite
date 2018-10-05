@@ -39,11 +39,14 @@ class Input extends Component {
       const suggestions = this.state.current_suggestions.map((suggestion) =>
         <div key={suggestion} className="suggestion">{suggestion}</div>
       )
+      const style = {
+        width: this.props.size
+      }
       return (
 
         <div>
-          <input className="input" type="text" ref="category" placeholder={this.props.placeholder} onChange={this.onChange} value={this.props.val}/>
-          {suggestions}
+          <input style={style} className="input" type="text" ref="category" placeholder={this.props.placeholder} onChange={this.onChange} value={this.props.val}/>
+
         </div>
       )
     }

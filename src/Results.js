@@ -43,22 +43,20 @@ class Results extends Component {
       return (
         <div className='modal' onClick={this.handleClickOutside}>
           <div className='modal-content w3-animate-top w3-card-4'>
-            <img src={this.props.results.image_url} style={{'margin': 'auto', 'width':"250px", 'height': '250px', 'borderRadius': '5px'}}/>
-            <div className="info">
-              <ul>
-                <li>
-                  <h1 className="resultInfo"><a style={{'color': '#006fbe', 'textDecoration': 'none'}} href={this.props.results.url}>{this.props.results.name}</a></h1>
-                </li>
-                <li>
-                  <div className="reviews">
-                    <img style={{'float': 'left'}} className="resultInfo" src={this.state.stars[this.props.results.rating]} />
-                    <p style={{'overflow': 'hidden', 'padding': "5px 5px"}}>{this.props.results.review_count} Reviews</p>
-                  </div>
-                </li>
-                <li>
-                  {this.props.results.price} - <i>{this.props.results.categories}</i>
-                </li>
-              </ul>
+            <div className='details'>
+              <img src={this.props.results.image_url} className="business_image"/>
+              <div className="info">
+
+                    <h1 className="resultInfo"><a href={this.props.results.url}>{this.props.results.name}</a></h1>
+
+                    <div className="reviews">
+                      <img style={{'height': '100%'}} src={this.state.stars[this.props.results.rating]} />
+                      <p style={{'overflow': 'hidden', 'padding': "5px 5px"}}>{this.props.results.review_count} Reviews</p>
+                    </div>
+
+                    {this.props.results.price} - <i>{this.props.results.categories}</i>
+
+              </div>
             </div>
             <div className="map">
               <iframe src={maps_url} style={{'width': "90%", 'height': '80%'}} allowFullScreen></iframe>

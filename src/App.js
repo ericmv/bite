@@ -118,26 +118,6 @@ class App extends Component {
         image_url: business.image_url,
       }
       this.setState({results: filtered, showResults: true});
-      // axios.get("/map", {params: {'location': location}})
-      // .then(res => {
-      //
-      //   const ll = res.data.results[0].geometry.location;
-      //   const filtered = {name:business.name,
-      //     location: business.location.display_address,
-      //     rating: business.rating,
-      //     url: business.url,
-      //     price: business.price,
-      //     review_count: business.review_count,
-      //     categories: categories,
-      //     phone: business.display_phone,
-      //     image_url: business.image_url,
-      //     latlon: ll
-      //   }
-      //   this.setState({results: filtered, showResults: true});
-      // })
-      // .catch(function() {
-      //   console.log("OHNO");
-      // })
     })
     .catch(function() {
       console.log("UHOH");
@@ -192,15 +172,17 @@ class App extends Component {
     return (
 
       <div className="App">
-          <div id="logo"><h1>Nibble</h1></div>
-          <CategoryColumn handleAddButton={this.handleAddButton.bind(this)} handleCategoryPress={this.handleCategoryPress.bind(this)} handleTextChange={this.handleTextChange.bind(this)} current_input={this.state.current_input}/>
-          <Divider col={2} />
-          <LocationColumn location={this.state.location} handleLocationChange={this.handleLocationChange.bind(this)}/>
-          <Divider col={4} />
-          <PriceGrid price={this.state.price} onClick={this.handlePriceChange.bind(this)}/>
-          <Divider col={6} />
-          <Button handleSubmit={this.handleSubmit.bind(this)}/>
-          <Results display={this.state.showResults} handleClose={this.handleModalClose.bind(this)} results={this.state.results}/>
+      <Results display={this.state.showResults} handleClose={this.handleModalClose.bind(this)} results={this.state.results}/>
+          <div id="logo"><img className="logoImage" src={require("./images/logo.png")} /></div>
+          <div className="main">
+            <div className="edit">
+              <CategoryColumn handleAddButton={this.handleAddButton.bind(this)} handleCategoryPress={this.handleCategoryPress.bind(this)} handleTextChange={this.handleTextChange.bind(this)} current_input={this.state.current_input}/>
+              <LocationColumn location={this.state.location} handleLocationChange={this.handleLocationChange.bind(this)}/>
+              <PriceGrid price={this.state.price} onClick={this.handlePriceChange.bind(this)}/>
+            </div>
+            <Button handleSubmit={this.handleSubmit.bind(this)}/>
+          </div>
+
           <SelectedCategories onClick={this.handleRemove.bind(this)} categories={this.state.terms}/>
       </div>
 

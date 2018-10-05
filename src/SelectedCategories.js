@@ -7,9 +7,9 @@ class SelectedCategories extends Component {
       <li key={category}><button value={category} onClick={this.props.onClick} class="selectedButton"><div class="ex">&times;</div>{category}</button></li>
     )
     return (
-      <div style={ {"gridArea": "3 / 1 / span 1 / span 7", "textAlign": "left" } }>
+      <div>
         <ul id="selected">
-          <li key="label" style={{"paddingRight": "10px"}}><strong>Selected: </strong></li>
+          <li key="label" style={{"marginLeft": "3%", "paddingRight": "10px"}}><strong>Selected: </strong></li>
           {categories}
         </ul>
       </div>
