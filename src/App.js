@@ -29,22 +29,21 @@ class App extends Component {
         ],
         showResults: false,
         results: {
-          name: "McDonalds",
-          location: ["123"],
-          price: "$",
-          url: "345",
+          name: "",
+          location: [],
+          price: "",
+          url: "",
           image_url: "",
           categories: "",
-          rating: "4",
-          review_count: "456",
-          phone: "7142222222",
+          rating: "",
+          review_count: "",
+          phone: "",
           latlon: ""
         }
       }
   }
 
   handleSubmit = () => {
-    console.log("sdjkfsdkljf")
     let headers = {
       'Content-Type': 'application/json'
     }
@@ -119,7 +118,7 @@ class App extends Component {
       this.setState({results: filtered, showResults: true});
     })
     .catch(function() {
-      console.log("UHOH");
+      console.log("error retrieving businesses");
     })
   }
 
